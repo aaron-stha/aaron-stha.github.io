@@ -79,4 +79,21 @@
   <script>
     function toggleTheme() {
       const html = document.documentElement;
-      const
+      const btn = document.getElementById('themeBtn');
+      if (html.getAttribute('data-theme') === 'dark') {
+        html.setAttribute('data-theme', 'light');
+        btn.textContent = 'dark';
+      } else {
+        html.setAttribute('data-theme', 'dark');
+        btn.textContent = 'light';
+      }
+    }
+  </script>
+<!-- <h1>YOOOOOOOO</h1> -->
+</body>
+</html>
+
+thisis the code.
+
+
+i want a logo that is a simple circle which can fit with the color ( white and black ) that is there. also if pssible , ake it so tht if its white , the logo is white. if dark, then the logois dark too
