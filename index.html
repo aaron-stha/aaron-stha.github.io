@@ -4,33 +4,39 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Aaron Shrestha</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='18' fill='white'/></svg>">  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='18' fill='white'/></svg>">  
   <style>
     :root[data-theme="dark"] {
       --bg: #0d0d0d;
       --text: #f5f5f5;
-      --muted: #666;
+      --muted: #888;
       --border: #222;
       --btn-bg: #1a1a1a;
       --btn-text: #888;
+      --card-bg: #141414;
+      --code-bg: #111;
     }
     :root[data-theme="light"] {
       --bg: #fafafa;
       --text: #0d0d0d;
-      --muted: #999;
+      --muted: #666;
       --border: #e5e5e5;
       --btn-bg: #f0f0f0;
       --btn-text: #666;
+      --card-bg: #ffffff;
+      --code-bg: #f5f5f5;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: 'Inter', sans-serif;
+      font-family: 'Charter', 'Bitstream Charter', 'Sitka Text', 'Georgia', serif;
       min-height: 100vh;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
+      padding: 6rem 2rem;
       transition: background 0.3s, color 0.3s;
     }
     .theme-btn {
@@ -43,38 +49,235 @@
       outline: 1px solid var(--border);
       outline-offset: -1px;
       padding: 0.4rem 0.9rem;
-      font-family: 'Inter', sans-serif;
-      font-size: 1.17rem;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 0.9rem;
       letter-spacing: 0.05em;
       border-radius: 99px;
       cursor: pointer;
       transition: color 0.25s, outline 0.25s;
+      z-index: 10;
     }
     .theme-btn:hover { color: var(--text); outline: 3px solid var(--text); }
-    @media (max-width: 600px) { .theme-btn { font-size: 0.78rem; } }
-    .center { text-align: center; }
-    h1 {
-      font-size: clamp(3rem, 8vw, 6rem);
-      font-weight: 400;
-      letter-spacing: -0.03em;
-      line-height: 1;
-      margin-bottom: 1rem;
+    @media (max-width: 600px) { .theme-btn { font-size: 0.75rem; } }
+    
+    .container {
+      width: 100%;
+      max-width: 1000px;
+      text-align: center;
     }
-    p {
-      font-size: clamp(1.1rem, 2vw, 1.4rem);
+    
+    .header { 
+      max-width: 700px; 
+      margin: 0 auto 4rem auto; 
+    }
+    
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+    }
+    
+    .subtitle {
+      font-size: clamp(1.1rem, 2vw, 1.3rem);
       color: var(--muted);
       font-weight: 300;
-      letter-spacing: 0.02em;
+      font-style: italic;
+      margin-bottom: 1.5rem;
+    }
+
+    .bio {
+      font-size: 1.05rem;
+      color: var(--text);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    .tech-stack {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 1.5rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+      font-weight: 500;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      text-align: left;
+    }
+
+    @media (max-width: 768px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 2rem;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card h3 {
+      font-size: 1.25rem;
+      font-weight: 400;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.01em;
+    }
+
+    .card p {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.6;
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+    }
+
+    pre {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      padding: 1.25rem;
+      border-radius: 6px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.85rem;
+      overflow-x: auto;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    /* Centered Footer Navigation */
+    .footer-links {
+      margin-top: 5rem;
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .footer-link {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+
+    .footer-link:hover {
+      color: var(--text);
+    }
+
+    .footer-link svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
     }
   </style>
 </head>
 <body>
+
   <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">light</button>
-  <div style="position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);font-size:0.7rem;color:var(--muted);letter-spacing:0.1em;">site in progress</div>
-  <div class="center">
-    <h1>Aaron Shrestha</h1>
-    <p>student. builder. always learning.</p>
+  
+  <div class="container">
+    <header class="header">
+      <h1>Aaron Shrestha</h1>
+      <p class="subtitle">Data Analytics & AI Exploration</p>
+      <p class="bio">
+        Computer Science student focusing on programmatic data workflows, automated data cleaning pipelines, and structured prompt engineering systems. Currently expanding core methodologies via specialized learning tracks on Coursera.
+      </p>
+      <p class="tech-stack">Python &bull; Pandas &bull; NumPy &bull; LLM Optimization</p>
+    </header>
+
+    <main>
+      <div class="section-title">Technical Implementations</div>
+      
+      <div class="grid">
+        <div class="card">
+          <div>
+            <h3>Automated Data Cleaning Pipeline</h3>
+            <p>A Python implementation utilizing Pandas to programmatically audit messy datasets. The pipeline handles systematic missing value imputation, data type casting, and deduplication to output production-ready files.</p>
+          </div>
+          <pre>
+import pandas as pd
+
+def clean_dataset(input_path):
+    df = pd.read_csv(input_path)
+    df.drop_duplicates(inplace=True)
+    
+    num_cols = df.select_dtypes(
+        include=['number']
+    ).columns
+    df[num_cols] = df[num_cols].fillna(
+        df[num_cols].mean()
+    )
+    return df</pre>
+        </div>
+
+        <div class="card">
+          <div>
+            <h3>Structured JSON Prompt Optimization</h3>
+            <p>An implementation framework detailing system-level prompt boundaries designed to minimize model hallucinations. Enforces deterministic serialization models for raw natural language processing.</p>
+          </div>
+          <pre>
+[System Context]
+You are a strict data parser.
+
+[Objective]
+Extract variables (Name, Amount)
+
+[Constraints]
+Output exclusively valid JSON.
+
+[Schema]
+{
+  "client": string,
+  "value": float
+}</pre>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer-links">
+      <button onclick="copyEmail(this)" class="footer-link">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        <span id="emailText">Email</span>
+      </button>
+      <a href="https://www.linkedin.com/in/aaronstha" target="_blank" class="footer-link">
+        <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://www.instagram.com/libra_stha" target="_blank" class="footer-link">
+        <svg viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6A3.6 3.6 0 0 0 16.4 4H7.6m12.4 2.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10m0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>
+        Instagram
+      </a>
+    </footer>
   </div>
+
   <script>
     function toggleTheme() {
       const html = document.documentElement;
@@ -87,7 +290,19 @@
         btn.textContent = 'light';
       }
     }
+
+    function copyEmail(buttonElement) {
+      const email = 'aaron.shre1919@gmail.com';
+      navigator.clipboard.writeText(email).then(() => {
+        const textSpan = document.getElementById('emailText');
+        textSpan.textContent = 'Copied!';
+        setTimeout(() => {
+          textSpan.textContent = 'Email';
+        }, 2000);
+      }).catch(err => {
+        console.error('Clipboard copy sequence failed: ', err);
+      });
+    }
   </script>
-<!-- <h1>YOOOOOOOO</h1> -->
 </body>
 </html>
