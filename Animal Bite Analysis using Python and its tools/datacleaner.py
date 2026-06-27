@@ -16,6 +16,11 @@ df['victim_zip'] = df['victim_zip'].replace(['nan', 'NAN', ''], 'UNKNOWN')
 #Fix casing so that words match up like 'Dog' and 'DOG'
 df['SpeciesIDDesc'] = df['SpeciesIDDesc'].astype(str).str.upper().str.strip().replace(['NAN', 'nan', ''], 'UNKNOWN')
 
+#Asking the user if they want the cleaned csv saved in new file
+if input("Do you want to save the cleaned csv in a new file(Y/N)").upper() == 'Y':
+    df.to_csv("Health_AnimalBites_Cleaned.csv", index=False)
+    print("Refined CSV saved successfully as 'Health_AnimalBites_Cleaned.csv'!")
+    
 #3. Visualization
 #Setup the visual style for Seaborn
 sns.set_theme(style = 'whitegrid')
@@ -37,7 +42,7 @@ plt.tight_layout()
 #Ask the user if they want the graph saved
 if input("Want to download the image?(Y/N)").upper() == 'Y':
     plt.savefig('Top_biting_species.png', dpi=300)
-    print("💾 Image successfully saved as 'Top_biting_species.png'!")
+    print("Image successfully saved as 'Top_biting_species.png'!")
 plt.show() #Shows the output
 
 plt.close()
