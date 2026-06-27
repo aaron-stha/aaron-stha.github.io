@@ -34,11 +34,12 @@ plt.xlabel("Number of Reported Bites", fontsize=11)
 plt.ylabel("Species", fontsize=11)
 
 plt.tight_layout()
-plt.show()
+#Ask the user if they want the graph saved
 if input("Want to download the image?(Y/N)").upper() == 'Y':
     plt.savefig('Top_biting_species.png', dpi=300)
+    print("💾 Image successfully saved as 'Top_biting_species.png'!")
+plt.show() #Shows the output
+
 plt.close()
 
 print("Half way done.")
-
-a=input("a")
